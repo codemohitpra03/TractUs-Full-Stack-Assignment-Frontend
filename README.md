@@ -1,54 +1,59 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Contract Management System
 
-Currently, two official plugins are available:
+This is the frontend repository code of the Contract Management System
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Features
+
+- Fluent UI
+- Pagination of contracts data
+- Debounced Search
+- Realtime updated of status over websockets
+- Filters By Sorting and category criteria of Draft and Finalized
+- Light/dark mode toggle
+
+
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+`VITE_APP_SERVER_BASE_URL` - SERVER BACKEND URL
+
+`VITE_APP_API_KEY` - API KEY FOR X-API-KEY VALIDATION ON SERVER
+
+
+
+
+## Installation
+
+Install my-project with npm
+
+
+Clone the repository
+```bash
+  https://github.com/codemohitpra03/TractUs-Full-Stack-Assignment-Frontend.git
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+Install dependencies
+```bash
+cd TractUs-Full-Stack-Assignment-Frontend
+npm install
 ```
+
+Start the development Server
+```bash
+npm run dev
+```
+## Tech Stack
+
+- Typescript
+- React 
+- TailwindCSS
+- shadcn/ui 
+- socket.io-client 
+- monaco editor
+
+
