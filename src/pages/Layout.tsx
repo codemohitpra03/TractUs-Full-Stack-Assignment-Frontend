@@ -1,8 +1,8 @@
 import { AppSidebar } from "@/components/AppComponents/Layout/AppSidebar"
+import { ModeToggle } from "@/components/AppComponents/Layout/mode-toggle"
 import {
   Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
@@ -12,8 +12,10 @@ import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
+  
 } from "@/components/ui/sidebar"
-import { Outlet, useLocation } from "react-router"
+import { ArrowLeft } from "lucide-react"
+import { Link, Outlet, useLocation } from "react-router"
 
 export function Layout() {
 
@@ -26,40 +28,53 @@ export function Layout() {
         <SidebarProvider>
             <AppSidebar />
             <SidebarInset>
-                <header className="flex sticky top-0 bg-background h-16 shrink-0 items-center gap-2 border-b px-4">
-                    <SidebarTrigger className="-ml-1" />
-                    <Separator orientation="vertical" className="mr-2 h-4" />
-                    <Breadcrumb>
-                        <BreadcrumbList>
-                            <BreadcrumbItem className="hidden md:block">
-                                {
-                                    isHomepage ?
+                <header className="flex sticky top-0 bg-background h-16 shrink-0 items-center justify-between border-b px-4">
+                    <div className="flex items-center gap-2">
 
-                                    <BreadcrumbPage>
-                                        Your Contracts
-                                    </BreadcrumbPage>
-                                    :
-                                    <BreadcrumbLink href="/">
-                                        Your Contracts
-                                    </BreadcrumbLink>
-                                }
-                            </BreadcrumbItem>
-                            
-                            {!isHomepage && 
-                                <>
+                        {isHomepage ?
+                            <>
                                 
-                                    <BreadcrumbSeparator className="hidden md:block" />
-                                    <BreadcrumbItem>
+                                <SidebarTrigger className="-ml-1  md:hidden"  />
+                                <Separator orientation="vertical" className="mr-2 h-4" />
+                            </>
+                            :
+                            <Link to="/">
+                                <ArrowLeft size={18} />
+                            </Link>
+                        }
+                        <Breadcrumb>
+                            <BreadcrumbList>
+                                <BreadcrumbItem className="block">
+                                    {
+                                        isHomepage ?
+
                                         <BreadcrumbPage>
-                                        {
-                                            contractId
-                                        }
+                                            Your Contracts
                                         </BreadcrumbPage>
-                                    </BreadcrumbItem>
-                                </>
-                            }
-                        </BreadcrumbList>
-                    </Breadcrumb>
+                                        :
+                                        <Link to="/">
+                                            Your Contracts
+                                        </Link>
+                                    }
+                                </BreadcrumbItem>
+                                
+                                {!isHomepage && 
+                                    <>
+                                    
+                                        <BreadcrumbSeparator className="block" />
+                                        <BreadcrumbItem>
+                                            <BreadcrumbPage>
+                                            {
+                                                contractId.slice(0,7) + '...'
+                                            }
+                                            </BreadcrumbPage>
+                                        </BreadcrumbItem>
+                                    </>
+                                }
+                            </BreadcrumbList>
+                        </Breadcrumb>
+                    </div>
+                    <ModeToggle/>
                 </header>
                 <Outlet/>
             </SidebarInset>

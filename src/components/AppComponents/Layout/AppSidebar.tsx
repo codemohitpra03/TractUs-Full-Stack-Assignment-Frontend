@@ -16,10 +16,12 @@ import {
   SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
-  SidebarMenuButton,
+  
   SidebarMenuItem,
   SidebarRail,
 } from "@/components/ui/sidebar"
+import { SortBy } from "./Filters/SortBy"
+import { Status } from "./Filters/Status"
 
 // This is sample data.
 const data = {
@@ -30,8 +32,8 @@ const data = {
       url: "#",
       items: [
         {
-          title: "Installation",
-          url: "#",
+          title: "Sort By",
+          component: <SortBy/>
         },
         {
           title: "Project Structure",
@@ -47,7 +49,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar {...props}>
       <SidebarHeader>
-        version
+        <div className="w-full flex items-center justify-center gap-3 ">
+
+          {/* <img src="/contract.png" className="w-6" alt="" /> */}
+          <span className="text-2xl font-medium">Contract Manager</span>
+        </div>
         <SearchForm />
       </SidebarHeader>
       <SidebarContent className="gap-0">
@@ -55,7 +61,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         {data.navMain.map((item) => (
           <Collapsible
             key={item.title}
-            title={item.title}
+            title={'Filters'}
             defaultOpen
             className="group/collapsible"
           >
@@ -65,20 +71,26 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 className="group/label text-sm text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
               >
                 <CollapsibleTrigger>
-                  {item.title}{" "}
+                  Filters
                   <ChevronRight className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-90" />
                 </CollapsibleTrigger>
               </SidebarGroupLabel>
               <CollapsibleContent>
                 <SidebarGroupContent>
-                  <SidebarMenu>
-                    {item.items.map((item) => (
-                      <SidebarMenuItem key={item.title}>
-                        <SidebarMenuButton asChild isActive={item.isActive}>
-                          <a href={item.url}>{item.title}</a>
-                        </SidebarMenuButton>
-                      </SidebarMenuItem>
-                    ))}
+                  <SidebarMenu className="space-y-5 mt-2">
+                    <SidebarMenuItem className=" px-5">
+                      {/* <SidebarMenuButton asChild isActive={item.isActive}>
+                        <a href={item.url}>{item.title}</a>
+                      </SidebarMenuButton> */}
+
+                      <SortBy/>
+                    </SidebarMenuItem>
+                    <SidebarMenuItem className=" px-5">
+                      
+
+                      <Status/>
+                    </SidebarMenuItem>
+                    
                   </SidebarMenu>
                 </SidebarGroupContent>
               </CollapsibleContent>
